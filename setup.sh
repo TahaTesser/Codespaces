@@ -79,29 +79,3 @@ if [ -f "$HOME/.zshrc" ]; then
 fi
 
 echo -e "${GREEN}Flutter has been added to PATH. Please restart your terminal or run 'source ~/.bashrc' (or 'source ~/.zshrc') to apply changes.${NC}"
-
-# Pre-download development binaries
-echo "Running initial Flutter setup..."
-export PATH="$PATH:${FLUTTER_PATH}"
-flutter precache
-
-# Disable Windows, macOS, Android, Linux and web configurations for GitHub Codespaces.
-echo "Disabling Windows, macOS, Android, Linux and web configurations..."
-flutter config --no-enable-windows-desktop
-flutter config --no-enable-macos-desktop
-flutter config --no-enable-android
-flutter config --no-enable-web
-flutter config --no-enable-linux-desktop
-
-# Verify Flutter is accessible
-if command -v flutter &> /dev/null; then
-    echo -e "${GREEN}Flutter installation verified successfully!${NC}"
-    flutter --version
-    echo -e "${GREEN}Installation complete! You may need to restart your terminal for changes to take effect.${NC}"
-else
-    echo -e "${RED}Warning: Flutter command not found. Please check your installation.${NC}"
-fi
-
-# Run flutter doctor to check setup
-echo "Running flutter doctor..."
-flutter doctor
